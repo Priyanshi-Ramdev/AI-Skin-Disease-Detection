@@ -1,0 +1,100 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermAI | Smart Skin Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <a href="/" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+                <span style="font-size: 0.8rem; color: var(--primary); border: 1px solid var(--primary); padding: 2px 8px; border-radius: 20px;">v2.0 Business Pro</span>
+            </div>
+            <h1>DermAI</h1>
+            <p class="subtitle">Intelligent Skin Condition Detection & Personalized Care</p>
+        </header>
+
+        <main class="main-card">
+            <!-- Left Side: Upload -->
+            <section class="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <div id="drop-zone-prompt">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & Drop Skin Image</p>
+                        <span>or click to browse</span>
+                    </div>
+                    <img id="preview-img" src="#" alt="Preview">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </div>
+
+                <div class="skin-type-selector">
+                    <label for="skin-type">Your Skin Type</label>
+                    <select id="skin-type">
+                        <option value="oily">Oily</option>
+                        <option value="dry">Dry</option>
+                        <option value="sensitive">Sensitive</option>
+                        <option value="combination">Combination</option>
+                    </select>
+                </div>
+
+                <button id="analyze-btn" disabled>Analyze Skin Condition</button>
+                <div class="loader" id="loader"></div>
+            </section>
+
+            <!-- Right Side: Results -->
+            <section class="results-section" id="results-section">
+                <div class="result-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h2 id="res-disease">Condition Name</h2>
+                            <p id="res-desc">Brief description.</p>
+                        </div>
+                        <button id="download-btn" class="secondary-btn"><i class="fas fa-file-pdf"></i> Download Report</button>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="conf-fill"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 0.3rem; color: var(--text-muted);">
+                        Confidence: <span id="res-conf">0%</span>
+                    </p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3><i class="fas fa-pills"></i> Medicated Care</h3>
+                        <ul id="res-medicated"></ul>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-leaf"></i> Herbal Remedies</h3>
+                        <ul id="res-herbal"></ul>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-info-circle"></i> Lifestyle Advice</h3>
+                        <p id="res-lifestyle" style="font-size: 0.95rem; color: var(--text-muted);"></p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-sparkles"></i> Skin Type Care</h3>
+                        <p id="res-skin-advice" style="font-size: 0.95rem; color: var(--text-muted);"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 DermAI Analysis System. For informational purposes only.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
